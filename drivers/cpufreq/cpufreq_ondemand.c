@@ -1499,6 +1499,7 @@ static int should_io_be_busy(void)
 }
 
 #ifndef CONFIG_ARCH_MSM_CORTEXMP
+
 static int dbs_migration_notify(struct notifier_block *nb,
 				unsigned long target_cpu, void *arg)
 {
