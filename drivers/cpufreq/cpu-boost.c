@@ -183,7 +183,7 @@ static int boost_mig_sync_thread(void *data)
 		get_online_cpus();
 		if (cpu_online(dest_cpu)) {
 			cpufreq_update_policy(dest_cpu);
-			queue_delayed_work_on(dest_cpu, s->cpu, boost_rem_wq,
+			queue_delayed_work_on(dest_cpu, cpu_boost_wq,
 				&s->boost_rem, msecs_to_jiffies(boost_ms));
 		} else {
 			s->boost_min = 0;
@@ -223,6 +223,7 @@ static void do_input_boost(struct work_struct *work)
 	struct cpu_sync *i_sync_info;
 	struct cpufreq_policy policy;
 
+	get_online_cpus();
 	for_each_online_cpu(i) {
 
 		i_sync_info = &per_cpu(sync_info, i);
@@ -239,6 +240,7 @@ static void do_input_boost(struct work_struct *work)
 			&i_sync_info->input_boost_rem,
 			msecs_to_jiffies(input_boost_ms));
 	}
+	put_online_cpus();
 }
 
 static void cpuboost_input_event(struct input_handle *handle,
