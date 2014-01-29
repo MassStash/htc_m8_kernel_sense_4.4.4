@@ -87,11 +87,11 @@ static int boost_adjust_notify(struct notifier_block *nb, unsigned long val, voi
 	/*if (!b_min && !ib_min)
 		return NOTIFY_OK; */
 
-	min = max(b_min, ib_min);
+		min = max(b_min, ib_min);
 
-	pr_debug("CPU%u policy min before boost: %u kHz\n",
-		 cpu, policy->min);
-	pr_debug("CPU%u boost min: %u kHz\n", cpu, min);
+		pr_debug("CPU%u policy min before boost: %u kHz\n",
+			 cpu, policy->min);
+		pr_debug("CPU%u boost min: %u kHz\n", cpu, min);
 
 		cpufreq_verify_within_limits(policy, min, UINT_MAX);
 
@@ -180,7 +180,6 @@ static int boost_mig_sync_thread(void *data)
 			s->boost_min = src_policy.cur;
 		}
 		/* Force policy re-evaluation to trigger adjust notifier. */
-<<<<<<< HEAD
 		get_online_cpus();
 		if (cpu_online(dest_cpu)) {
 			cpufreq_update_policy(dest_cpu);
@@ -190,11 +189,6 @@ static int boost_mig_sync_thread(void *data)
 			s->boost_min = 0;
 		}
 		put_online_cpus();
-=======
-		cpufreq_update_policy(dest_cpu);
-		queue_delayed_work_on(s->cpu, cpu_boost_wq,
-			&s->boost_rem, msecs_to_jiffies(boost_ms));
->>>>>>> 30c967b... cpufreq: Add Input Boost feature to the cpu-boost driver
 	}
 
 	return 0;
