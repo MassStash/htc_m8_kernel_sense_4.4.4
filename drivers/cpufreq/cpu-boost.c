@@ -336,8 +336,6 @@ static int cpu_boost_init(void)
 	int cpu, ret;
 	struct cpu_sync *s;
 
-	cpufreq_register_notifier(&boost_adjust_nb, CPUFREQ_POLICY_NOTIFIER);
-
 	cpu_boost_wq = alloc_workqueue("cpuboost_wq", WQ_HIGHPRI, 0);
 	if (!cpu_boost_wq)
 		return -EFAULT;
