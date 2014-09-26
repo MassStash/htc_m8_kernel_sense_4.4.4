@@ -1125,11 +1125,11 @@ static int taiko_config_compander(struct snd_soc_dapm_widget *w,
 		/* Set the static gain offset for HPH Path */
 		if (comp == COMPANDER_1) {
 			if (buck_mv == WCD9XXX_CDC_BUCK_MV_2P15) {
-				snd_soc_update_bits(codec,
+			snd_soc_update_bits(codec,
 					TAIKO_A_CDC_COMP0_B4_CTL + (comp * 8),
 					0x80, 0x00);
-			} else {
-				snd_soc_update_bits(codec,
+		} else {
+			snd_soc_update_bits(codec,
 					TAIKO_A_CDC_COMP0_B4_CTL + (comp * 8),
 					0x80, 0x80);
 			}
@@ -4636,7 +4636,6 @@ static int taiko_volatile(struct snd_soc_codec *ssc, unsigned int reg)
 	/* HPH status registers */
 	if (reg == TAIKO_A_RX_HPH_L_STATUS || reg == TAIKO_A_RX_HPH_R_STATUS)
 		return 1;
-
 	/* HPH PA Enable */
 	if (reg == TAIKO_A_RX_HPH_CNP_EN)
 		return 1;
@@ -5906,7 +5905,6 @@ static const struct snd_soc_dapm_widget taiko_dapm_widgets[] = {
 		taiko_hphr_dac_event,
 		SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
 		SND_SOC_DAPM_PRE_PMD | SND_SOC_DAPM_POST_PMD),
-
 	/* Speaker */
 	SND_SOC_DAPM_OUTPUT("LINEOUT1"),
 	SND_SOC_DAPM_OUTPUT("LINEOUT2"),
