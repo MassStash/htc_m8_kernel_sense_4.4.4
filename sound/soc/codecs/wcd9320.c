@@ -1125,11 +1125,11 @@ static int taiko_config_compander(struct snd_soc_dapm_widget *w,
 		/* Set the static gain offset for HPH Path */
 		if (comp == COMPANDER_1) {
 			if (buck_mv == WCD9XXX_CDC_BUCK_MV_2P15) {
-			snd_soc_update_bits(codec,
+				snd_soc_update_bits(codec,
 					TAIKO_A_CDC_COMP0_B4_CTL + (comp * 8),
 					0x80, 0x00);
-		} else {
-			snd_soc_update_bits(codec,
+			} else {
+				snd_soc_update_bits(codec,
 					TAIKO_A_CDC_COMP0_B4_CTL + (comp * 8),
 					0x80, 0x80);
 			}
@@ -6965,11 +6965,8 @@ static int taiko_setup_irqs(struct taiko_priv *taiko)
 {
 	int ret = 0;
 	struct snd_soc_codec *codec = taiko->codec;
-	struct wcd9xxx *wcd9xxx = codec->control_data;
-	struct wcd9xxx_core_resource *core_res =
-				&wcd9xxx->core_res;
 
-	ret = wcd9xxx_request_irq(core_res, WCD9XXX_IRQ_SLIMBUS,
+	ret = wcd9xxx_request_irq(codec->control_data, WCD9XXX_IRQ_SLIMBUS,
 				  taiko_slimbus_irq, "SLIMBUS Slave", taiko);
 	if (ret)
 		pr_err("%s: Failed to request irq %d\n", __func__,
@@ -6983,11 +6980,8 @@ static int taiko_setup_irqs(struct taiko_priv *taiko)
 static void taiko_cleanup_irqs(struct taiko_priv *taiko)
 {
 	struct snd_soc_codec *codec = taiko->codec;
-	struct wcd9xxx *wcd9xxx = codec->control_data;
-	struct wcd9xxx_core_resource *core_res =
-				&wcd9xxx->core_res;
 
-	wcd9xxx_free_irq(core_res, WCD9XXX_IRQ_SLIMBUS, taiko);
+	wcd9xxx_free_irq(codec->control_data, WCD9XXX_IRQ_SLIMBUS, taiko);
 }
 
 int taiko_hs_detect(struct snd_soc_codec *codec,
