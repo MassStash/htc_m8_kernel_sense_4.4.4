@@ -664,29 +664,6 @@ static void wcd9xxx_clsh_comp_req(struct snd_soc_codec *codec,
 	}
 }
 
-static void wcd9xxx_dynamic_bypass_buck_ctrl(struct snd_soc_codec *cdc,
-						bool enable)
-{
-	int i;
-	const struct wcd9xxx_reg_mask_val reg_set[] = {
-		{WCD9XXX_A_BUCK_MODE_3, (0x1 << 3), (enable << 3)},
-		{WCD9XXX_A_BUCK_MODE_5, (0x1 << 1), (enable << 1)},
-		{WCD9XXX_A_BUCK_MODE_5, 0x1, enable}
-	};
-	if (!enable) {
-		snd_soc_update_bits(cdc, WCD9XXX_A_BUCK_MODE_1,
-					(0x1 << 3), 0x00);
-		snd_soc_update_bits(cdc, WCD9XXX_A_BUCK_MODE_4,
-					0xFF, BUCK_VREF_2V);
-	}
-	for (i = 0; i < ARRAY_SIZE(reg_set); i++)
-		snd_soc_update_bits(cdc, reg_set[i].reg, reg_set[i].mask,
-							reg_set[i].val);
-
-	/* 50us sleep is reqd. as per the class H HW design sequence */
-	usleep_range(BUCK_SETTLE_TIME_US, BUCK_SETTLE_TIME_US+10);
-}
-
 int wcd9xxx_soc_update_bits_push(struct snd_soc_codec *codec,
 					struct list_head *list,
 					uint16_t reg, uint8_t mask,
