@@ -93,47 +93,31 @@ echo " Compiling dt.img brah "
 
 echo
 echo
-echo " Now the kernel is going to get packaged in a flashable zip yo"
+echo " Now the kernel is going to get packaged in a flashable zip yo "
 
 echo
 echo
-#mkdir zip2
-#mkdir zip2/kernel
-#mkdir zip2/modules
-#cp arch/arm/boot/zImage zip2/kernel/
 
 echo
 echo
 echo " Moved zImage "
-cp arch/arm/boot/zImage ~/AndroidDev/AAmkbootimg_tools/venom
-#cp arch/arm/boot/dt.img zip2/kernel/
+cp arch/arm/boot/zImage /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel
 
 echo
 echo
 echo " Moved dt.img "
-cp arch/arm/boot/dt.img ~/AndroidDev/AAmkbootimg_tools/venom
+cp arch/arm/boot/dt.img /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel/dtb
 
 echo
 echo
 echo " Moving modules "
-find -iname *.ko | xargs cp -t /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4/system/lib/modules
-cd ~/AndroidDev/AAmkbootimg_tools
+find -iname *.ko | xargs cp -t /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules
 
-echo
-echo
-echo " Making a boot.img ya'll "
-./mkboot venom boot.img
+cd /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules
 
-echo
-echo
-echo " Moved boot.img "
-cp boot.img /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4/boot
+mv wlan.ko /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules/pronto/pronto_wlan.ko
 
-cd /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4/system/lib/modules
-
-mv wlan.ko /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4/system/lib/modules/pronto/pronto_wlan.ko
-
-cd /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4
+cd /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel
 
 echo
 echo
