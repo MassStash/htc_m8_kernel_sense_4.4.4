@@ -5,16 +5,16 @@
 #Config Section below is where you set your paths-
 
 #Kernel path
-kernelDir1="/home/zaichron-lin/AndroidDev/htc_m8whl_kernel_sense_4.4.4" #( Example /home/user/path )
-kernelDir2="/home/zaichron-lin/AndroidDev/htc_m8whl_kernel_sense_4.4.4" #( Example /home/user/path )
+kernelDir1="/home/zaichron-lin/AndroidDev/htc_m8_kernel_sense_4.4.4" #( Example /home/user/path )
+kernelDir2="/home/zaichron-lin/AndroidDev/htc_m8_kernel_sense_4.4.4" #( Example /home/user/path )
 kernelDir3="Path to kernel 3" #( Example /home/user/path )
 #Toolchain path
 toolchainDir="/home/zaichron-lin/AndroidDev/AAtoolchains/linaro_toolchains_2014/arm-cortex_a15-linux-gnueabihf-linaro_4.9.3-2014.11" #( Example /home/user/path )
 #Path where you would like the kernel to be outputed
-exportDir="/home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/out" #( Example /home/user/Desktop )
+exportDir="/home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8ul/out" #( Example /home/user/Desktop )
 #Change default to what ever you like
-kernel1name="Hypernova-m8whl-v1.3.5-Bellatrix-Sense"
-kernel2name="Hypernova-m8whl-v1.3.x"
+kernel1name="Hypernova-m8ul-v1.3.5-Bellatrix-Sense"
+kernel2name="Hypernova-m8ul-v1.3.x"
 kernel3name="Default-3"
 #Do not edit
 now=$(date +"%m-%d-%Y-%H-%M")
@@ -77,23 +77,23 @@ echo
 echo
 echo
 echo " Moved zImage "
-cp arch/arm/boot/zImage /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel
+cp arch/arm/boot/zImage /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8ul/Hypernova-Sense-4.4.4-Anykernel
 
 echo
 echo
 echo " Moved dt.img "
-cp arch/arm/boot/dt.img /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel/dtb
+cp arch/arm/boot/dt.img /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8ul/Hypernova-Sense-4.4.4-Anykernel/dtb
 
 echo
 echo
 echo " Moving modules "
-find -iname *.ko | xargs cp -t /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules
+find -iname *.ko | xargs cp -t /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8ul/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules
 
-cd /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules
+cd /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8ul/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules
 
-mv wlan.ko /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules/pronto/pronto_wlan.ko
+mv wlan.ko /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8ul/Hypernova-Sense-4.4.4-Anykernel/system/lib/modules/pronto/pronto_wlan.ko
 
-cd /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8whl/Hypernova-Sense-4.4.4-Anykernel
+cd /home/zaichron-lin/Desktop/Copy/AndroidDev/Kernz/m8ul/Hypernova-Sense-4.4.4-Anykernel
 
 echo
 echo
@@ -101,7 +101,7 @@ echo " I a make a da zip now, then move that ish to copy out dir "
 zip -r $kernelName-$now.zip * -x **~*
 mv $kernelName-$now.zip $exportDir
 #cd ..
-cd ~/AndroidDev/htc_m8whl_kernel_sense_4.4.4
+cd ~/AndroidDev/htc_m8_kernel_sense_4.4.4
 #rm -r zip2
 cd $DIR
 echo
